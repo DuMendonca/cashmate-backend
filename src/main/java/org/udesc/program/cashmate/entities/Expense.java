@@ -1,42 +1,38 @@
 package org.udesc.program.cashmate.entities;
 
-import jakarta.persistence.*;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
 @Document
 public class Expense
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "id", nullable = false)
-	private Long id;
+	private String id;
 	private String description;
 	private float price;
-	@OneToOne
 	private Tag tag;
-	@OneToOne
 	private MouthOfYears mouthOfYears;
 
 	public Expense()
 	{
-		// TODO document why this constructor is empty
 	}
 
-	public Expense(Long id, String description, float price, Tag tag, MouthOfYears mouthOfYears)
+	public Expense(String description, float price, Tag tag, MouthOfYears mouthOfYears)
 	{
-		this.id = id;
 		this.description = description;
 		this.price = price;
 		this.tag = tag;
 		this.mouthOfYears = mouthOfYears;
 	}
 
-	public Long getId()
+	public String getId()
 	{
 		return id;
 	}
 
-	public void setId(Long id)
+	public void setId(String id)
 	{
 		this.id = id;
 	}
