@@ -7,18 +7,18 @@ import org.springframework.context.annotation.Bean;
 import org.udesc.program.cashmate.entities.Expense;
 import org.udesc.program.cashmate.entities.MouthOfYears;
 import org.udesc.program.cashmate.entities.Tag;
-import org.udesc.program.cashmate.repositories.ExpenseRepository;
 import org.udesc.program.cashmate.services.ExpenseService;
 
 @SpringBootApplication
-public class CaseMateApplication {
+public class CashMateApplication
+{
 
 	public static void main(String[] args) {
-		SpringApplication.run(CaseMateApplication.class, args);
+		SpringApplication.run(CashMateApplication.class, args);
 	}
 
 	@Bean
-	CommandLineRunner runner(ExpenseRepository repository, ExpenseService service) {
+	CommandLineRunner runner(ExpenseService service) {
 		return args -> {
 			Expense expense = new Expense("Car Expense",
 				400.00f,
@@ -26,8 +26,6 @@ public class CaseMateApplication {
 				MouthOfYears.JANUARY);
 
 			service.createNewExpense(expense);
-
-			System.out.println(service.getExpenseByMouth(0));
 		};
 	}
 
